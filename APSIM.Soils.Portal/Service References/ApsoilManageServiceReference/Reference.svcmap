@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="732ba522-c7f6-4982-8a36-fa9924ec2e99" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63130/ApsoilManage.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ApsoilManage.xsd" MetadataType="Schema" ID="fe74dd7e-4ba9-495c-bdb8-e4a98d4ddf52" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?xsd=xsd1" />
+    <MetadataFile FileName="ApsoilManage.wsdl" MetadataType="Wsdl" ID="168dd85d-4120-41b5-bf7d-205e5f675863" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?wsdl" />
+    <MetadataFile FileName="ApsoilManage.disco" MetadataType="Disco" ID="cd8d4f74-62e6-4a7a-ac0a-230c3d54f897" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?disco" />
+    <MetadataFile FileName="ApsoilManage1.xsd" MetadataType="Schema" ID="3ddeae0f-0555-4b2f-aa91-b30bd40c238b" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
