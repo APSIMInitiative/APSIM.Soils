@@ -18,14 +18,8 @@ namespace APSIM.Soils.Portal.ApsoilManageServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IApsoilManage/RefreshDBTablesFromXML", ReplyAction="http://tempuri.org/IApsoilManage/RefreshDBTablesFromXMLResponse")]
         string RefreshDBTablesFromXML();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IApsoilManage/RefreshDBTablesFromXML", ReplyAction="http://tempuri.org/IApsoilManage/RefreshDBTablesFromXMLResponse")]
-        System.Threading.Tasks.Task<string> RefreshDBTablesFromXMLAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IApsoilManage/CleanOutDBTables", ReplyAction="http://tempuri.org/IApsoilManage/CleanOutDBTablesResponse")]
         string CleanOutDBTables();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IApsoilManage/CleanOutDBTables", ReplyAction="http://tempuri.org/IApsoilManage/CleanOutDBTablesResponse")]
-        System.Threading.Tasks.Task<string> CleanOutDBTablesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -59,16 +53,8 @@ namespace APSIM.Soils.Portal.ApsoilManageServiceReference {
             return base.Channel.RefreshDBTablesFromXML();
         }
         
-        public System.Threading.Tasks.Task<string> RefreshDBTablesFromXMLAsync() {
-            return base.Channel.RefreshDBTablesFromXMLAsync();
-        }
-        
         public string CleanOutDBTables() {
             return base.Channel.CleanOutDBTables();
-        }
-        
-        public System.Threading.Tasks.Task<string> CleanOutDBTablesAsync() {
-            return base.Channel.CleanOutDBTablesAsync();
         }
     }
 }

@@ -24,76 +24,6 @@
             Key word for resource discovery module failures.
             </summary>
         </member>
-        <member name="T:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener">
-            <summary>
-            Provides methods for listening to events from FrameworkEventSource for HTTP.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.FrameworkEventSourceName">
-            <summary>
-            The Framework EventSource name. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.BeginGetResponseEventId">
-            <summary>
-            BeginGetResponse Event ID.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.EndGetResponseEventId">
-            <summary>
-            EndGetResponse Event ID.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.BeginGetRequestStreamEventId">
-            <summary>
-            BeginGetRequestStream Event ID.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.EndGetRequestStreamEventId">
-            <summary>
-            EndGetRequestStream Event ID.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.httpProcessingFramework">
-            <summary>
-            The Http processor.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
-            <summary>
-            Enables HTTP event source when EventSource is created. Called for all existing 
-            event sources when the event listener is created and when a new event source is attached to the listener.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called whenever an event has been written by an event source for which the event listener has enabled events.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.OnBeginGetResponse(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called when a postfix of a (HttpWebRequest|FileWebRequest|FtpWebRequest).BeginGetResponse method has been invoked.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.OnEndGetResponse(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called when a postfix of a (HttpWebRequest|FileWebRequest|FtpWebRequest).EndGetResponse method has been invoked.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpEventListener.OnBeginGetRequestStream(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called when a postfix of a (HttpWebRequest|FileWebRequest|FtpWebRequest).BeginGetRequestStream method has been invoked.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
-        </member>
         <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkHttpProcessing.OnBeginHttpCallback(System.Int64,System.String)">
             <summary>
             On begin callback from FX.
@@ -519,60 +449,6 @@
             </summary>
             <param name="url">HTTP URL.</param>
             <returns>True if URL is application insights url, otherwise false.</returns>
-        </member>
-        <member name="T:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener">
-            <summary>
-            Provides methods for listening to events from FrameworkEventSource for SQL.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.AdoNetEventSourceName">
-            <summary>
-            The Framework EventSource name for SQL. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.BeginExecuteEventId">
-            <summary>
-            BeginExecute Event ID.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.EndExecuteEventId">
-            <summary>
-            EndExecute Event ID.
-            </summary>
-        </member>
-        <member name="F:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.sqlProcessingFramework">
-            <summary>
-            The SQL processor.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
-            <summary>
-            Enables SQL event source when EventSource is created. Called for all existing 
-            event sources when the event listener is created and when a new event source is attached to the listener.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called whenever an event has been written by an event source for which the event listener has enabled events.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.OnBeginExecute(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called when a postfix of a SQLCommand begin methods have been invoked.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlEventListener.OnEndExecute(System.Diagnostics.Tracing.EventWrittenEventArgs)">
-            <summary>
-            Called when a postfix of a postfix of a SQLCommand end methods have been invoked.
-            </summary>
-            <param name="eventData">The event arguments that describe the event.</param>
         </member>
         <member name="M:Microsoft.ApplicationInsights.DependencyCollector.Implementation.FrameworkSqlProcessing.#ctor(Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration)">
             <summary>

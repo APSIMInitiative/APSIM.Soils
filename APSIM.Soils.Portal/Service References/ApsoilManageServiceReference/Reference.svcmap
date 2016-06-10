@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="732ba522-c7f6-4982-8a36-fa9924ec2e99" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c5b3b9b7-7f57-4d6e-b473-7d819a272ba3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
-    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -22,10 +21,10 @@
     <MetadataSource Address="http://localhost:63130/ApsoilManage.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ApsoilManage.xsd" MetadataType="Schema" ID="fe74dd7e-4ba9-495c-bdb8-e4a98d4ddf52" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?xsd=xsd1" />
-    <MetadataFile FileName="ApsoilManage.wsdl" MetadataType="Wsdl" ID="168dd85d-4120-41b5-bf7d-205e5f675863" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?wsdl" />
-    <MetadataFile FileName="ApsoilManage.disco" MetadataType="Disco" ID="cd8d4f74-62e6-4a7a-ac0a-230c3d54f897" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?disco" />
-    <MetadataFile FileName="ApsoilManage1.xsd" MetadataType="Schema" ID="3ddeae0f-0555-4b2f-aa91-b30bd40c238b" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?xsd=xsd0" />
+    <MetadataFile FileName="ApsoilManage.xsd" MetadataType="Schema" ID="0dade2bb-d09e-430b-b4c3-5fbeae0d9c0e" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?xsd=xsd1" />
+    <MetadataFile FileName="ApsoilManage.wsdl" MetadataType="Wsdl" ID="f3893d26-9f3a-48a3-9204-8e8fdc6f4233" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?wsdl" />
+    <MetadataFile FileName="ApsoilManage.disco" MetadataType="Disco" ID="cce8248f-8d6e-4e38-9ac7-6a4d41cf11ec" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?disco" />
+    <MetadataFile FileName="ApsoilManage1.xsd" MetadataType="Schema" ID="04dceb13-2f3c-41e4-b23b-b784bbf0788f" SourceId="1" SourceUrl="http://localhost:63130/ApsoilManage.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

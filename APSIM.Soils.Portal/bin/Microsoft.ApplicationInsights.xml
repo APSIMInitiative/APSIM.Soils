@@ -4,66 +4,6 @@
         <name>Microsoft.ApplicationInsights</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.Platform.PlatformImplementation">
-            <summary>
-            The .NET 4.0 and 4.5 implementation of the <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform"/> interface.
-            </summary>
-        </member>
-        <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform">
-            <summary>
-            Encapsulates platform-specific functionality required by the API.
-            </summary>
-            <remarks>
-            This type is public to enable mocking on Windows Phone.
-            </remarks>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.GetApplicationSettings">
-            <summary>
-            Returns a dictionary that can be used to access per-user/per-application settings shared by all application instances.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.ReadConfigurationXml">
-            <summary>
-            Returns contents of the ApplicationInsights.config file in the application directory.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.GetExceptionDetails(System.Exception,Microsoft.ApplicationInsights.Extensibility.Implementation.External.ExceptionDetails)">
-            <summary>
-            Returns the platform specific <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.External.ExceptionDetails"/> object for the given Exception.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.GetDebugOutput">
-            <summary>
-            Returns the platform specific Debugger writer to the VS output console.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.Platform.PlatformImplementation.ReadConfigurationXml">
-            <summary>
-            Returns contents of the ApplicationInsights.config file in the application directory.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.Platform.PlatformImplementation.GetDebugOutput">
-            <summary>
-            Returns the platform specific Debugger writer to the VS output console.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory"/> class.
-            </summary>
-            <remarks>
-            This constructor is protected because <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory"/> is only meant to be instantiated 
-            by the <see cref="P:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory.Instance"/> property or by tests.
-            </remarks>
-        </member>
-        <member name="P:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory.Instance">
-            <summary>
-            Gets or sets the default <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory"/> instance used by <see cref="T:Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration"/>.
-            </summary>
-            <remarks>
-            This property is a test isolation "pinch point" that allows us to test <see cref="T:Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration"/> without using reflection.
-            </remarks>
-        </member>
         <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.External.ExceptionDetails">
             <summary>
             Additional implementation for ExceptionDetails.
@@ -260,6 +200,97 @@
             <remarks>
             Acquisition date is automatically supplied in default Application Insights configuration.
             </remarks>
+        </member>
+        <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.Platform.PlatformImplementation">
+            <summary>
+            The .NET 4.0 and 4.5 implementation of the <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform"/> interface.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform">
+            <summary>
+            Encapsulates platform-specific functionality required by the API.
+            </summary>
+            <remarks>
+            This type is public to enable mocking on Windows Phone.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.GetApplicationSettings">
+            <summary>
+            Returns a dictionary that can be used to access per-user/per-application settings shared by all application instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.ReadConfigurationXml">
+            <summary>
+            Returns contents of the ApplicationInsights.config file in the application directory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.GetExceptionDetails(System.Exception,Microsoft.ApplicationInsights.Extensibility.Implementation.External.ExceptionDetails)">
+            <summary>
+            Returns the platform specific <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.External.ExceptionDetails"/> object for the given Exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.IPlatform.GetDebugOutput">
+            <summary>
+            Returns the platform specific Debugger writer to the VS output console.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.Platform.PlatformImplementation.ReadConfigurationXml">
+            <summary>
+            Returns contents of the ApplicationInsights.config file in the application directory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.Platform.PlatformImplementation.GetDebugOutput">
+            <summary>
+            Returns the platform specific Debugger writer to the VS output console.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory"/> class.
+            </summary>
+            <remarks>
+            This constructor is protected because <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory"/> is only meant to be instantiated 
+            by the <see cref="P:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory.Instance"/> property or by tests.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory.Instance">
+            <summary>
+            Gets or sets the default <see cref="T:Microsoft.ApplicationInsights.Extensibility.Implementation.TelemetryConfigurationFactory"/> instance used by <see cref="T:Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration"/>.
+            </summary>
+            <remarks>
+            This property is a test isolation "pinch point" that allows us to test <see cref="T:Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration"/> without using reflection.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.ApplicationInsights.Utils">
+            <summary>
+            Various utilities.
+            </summary>
+            <summary>
+            Various utilities.
+            </summary>
+        </member>
+        <member name="F:Microsoft.ApplicationInsights.Utils.RelativeFolderPath">
+            <summary>
+            The relative path to the cache for our application data.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Utils.GetHashedId(System.String,System.Boolean)">
+            <summary>
+            Gets the input string as a SHA256 Base64 encoded string.
+            </summary>
+            <param name="input">The input to hash.</param>
+            <param name="isCaseSensitive">If set to <c>false</c> the function will produce the same value for any casing of input.</param>
+            <returns>The hashed value.</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Utils.PopulateRequiredStringValue(System.String,System.String,System.String)">
+            <summary>
+            Validates the string and if null or empty populates it with '$parameterName is a required field for $telemetryType' value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationInsights.Utils.ValidateDuration(System.String)">
+            <summary>
+            Returns default Timespan value if not a valid Timespan.
+            </summary>
         </member>
         <member name="T:Microsoft.ApplicationInsights.Channel.InMemoryChannel">
             <summary>
@@ -1866,24 +1897,6 @@
             Defines extension methods that allow coding against <see cref="T:System.Type"/> without conditional compilation on versions of .NET framework.
             </summary>
         </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.TypeExtensions.IsAssignableFrom(System.Type,System.Type)">
-            <summary>
-            Returns a value that indicates whether the specified type can be assigned to the current type.
-            </summary>
-            <remarks>
-            This method emulates the built-in method of the <see cref="T:System.Type"/> class which is not available on Windows Runtime.
-            </remarks>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Extensibility.Implementation.TypeExtensions.GetProperties(System.Type)">
-            <summary>
-            Returns all the public properties of the specified type.
-            </summary>
-            <remarks>
-            This method emulates the built-in method of the <see cref="T:System.Type"/> class which is not available on Windows Runtime.
-            Note that, unlike the built-in <see cref="T:System.Type"/> method, this method does not return properties defined in any of the base types.
-            However, this should be sufficient for our public types, which have to be sealed on Windows Runtime.
-            </remarks>
-        </member>
         <member name="T:Microsoft.ApplicationInsights.Extensibility.Implementation.UserContext">
             <summary>
             Encapsulates information about a user using an application.
@@ -2332,21 +2345,6 @@
             <summary>
             Gets or sets the channel used by the client helper. Note that this doesn't need to be public as a customer can create a new client 
             with a new channel via telemetry configuration.
-            </summary>
-        </member>
-        <member name="T:Microsoft.ApplicationInsights.Utils">
-            <summary>
-            Various utilities.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Utils.PopulateRequiredStringValue(System.String,System.String,System.String)">
-            <summary>
-            Validates the string and if null or empty populates it with '$parameterName is a required field for $telemetryType' value.
-            </summary>
-        </member>
-        <member name="M:Microsoft.ApplicationInsights.Utils.ValidateDuration(System.String)">
-            <summary>
-            Returns default Timespan value if not a valid Timespan.
             </summary>
         </member>
     </members>
