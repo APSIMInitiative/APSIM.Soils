@@ -5,28 +5,31 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using APSIM.Shared.Utilities;
+
+
 namespace APSIM.Soils.Portal
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label1.Text = "";
+            Label2.Text = "";
         }
 
         protected void BTNCleanOutDBTables_Click(object sender, EventArgs e)
         {
-            //https://msdn.microsoft.com/en-us/library/bb386386%28v=vs.100%29.aspx
-
             Label1.Text = "";
-            ApsoilManageServiceReference.ApsoilManageClient client = new ApsoilManageServiceReference.ApsoilManageClient();
-            Label1.Text = client.CleanOutDBTables(); 
+            string url = "http://www.apsim.info/APSIM.Soils.Service/ApsoilManage.svc/CleanOutDBTables";
+            Label1.Text = WebUtilities.CallRESTService<string>(url);
         }
 
         protected void BTNRefreshDBTables_Click(object sender, EventArgs e)
         {
             Label2.Text = "";
-            ApsoilManageServiceReference.ApsoilManageClient client = new ApsoilManageServiceReference.ApsoilManageClient();
-            Label2.Text = client.RefreshDBTablesFromXML();
+            string url = "http://www.apsim.info/APSIM.Soils.Service/ApsoilManage.svc//RefreshDBTablesFromXML";
+            Label2.Text = WebUtilities.CallRESTService<string>(url);
         }
     }
 }

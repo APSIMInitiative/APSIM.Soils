@@ -1,4 +1,3 @@
-C:\APSIM.Soils\APSIM.Soils.Portal\bin\ApplicationInsights.config
 C:\APSIM.Soils\APSIM.Soils.Portal\bin\APSIM.Soils.Portal.dll.config
 C:\APSIM.Soils\APSIM.Soils.Portal\bin\APSIM.Soils.Portal.dll
 C:\APSIM.Soils\APSIM.Soils.Portal\bin\APSIM.Soils.Portal.pdb
@@ -32,3 +31,10 @@ C:\APSIM.Soils\APSIM.Soils.Portal\obj\Release\APSIM.Soils.Portal.csproj.App.conf
 C:\APSIM.Soils\APSIM.Soils.Portal\obj\Release\APSIM.Soils.Portal.csprojResolveAssemblyReference.cache
 C:\APSIM.Soils\APSIM.Soils.Portal\obj\Release\APSIM.Soils.Portal.dll
 C:\APSIM.Soils\APSIM.Soils.Portal\obj\Release\APSIM.Soils.Portal.pdb
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\APSIM.Shared.dll
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\DocumentFormat.OpenXml.dll
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\Excel.dll
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\ICSharpCode.SharpZipLib.dll
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\APSIM.Shared.pdb
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\APSIM.Shared.xml
+C:\APSIM.Soils\APSIM.Soils.Portal\bin\Excel.pdb
