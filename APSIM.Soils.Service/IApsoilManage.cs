@@ -20,11 +20,36 @@ namespace APSIM.Soils.Service
         //CompositeType GetDataUsingDataContract(CompositeType composite);
 
 
+        //See APSIM.Registrations for what I used as a template for the WebGet
+
+        /// <summary>
+        /// Cleans Out (Removes) all the data from the Apsoil Database Tables.
+        /// (Usually in preparation for the Tables to be Refreshed from the XML)
+        /// 
+        /// RefreshDBTablesFromXML will do this anyway, so you don't need to do it manually.
+        /// However, if you wish to be sure RefreshDBTablesFromXML is working correctly:
+        /// You can manually Clean Out the data using this method. 
+        /// Then check to see the database tables are empty.
+        /// Then run RefreshDBTablesFromXML.
+        /// You can then be sure all the new data in the tables is new.
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
+        [WebGet(UriTemplate = "/CleanOutDBTables", BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        string CleanOutDBTables();
+
+
+
+        //See APSIM.Registrations for what I used as a template for the WebGet
+
+        /// <summary>
+        /// Refreshes all the Apsoil Database Tables using the XML stored in the AllSoils table.
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebGet(UriTemplate = "/RefreshDBTablesFromXML", BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         string RefreshDBTablesFromXML();
 
-        [OperationContract]
-        string CleanOutDBTables();
 
     }
 

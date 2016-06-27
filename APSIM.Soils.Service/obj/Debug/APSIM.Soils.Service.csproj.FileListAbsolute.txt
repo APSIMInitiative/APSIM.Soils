@@ -1,5 +1,4 @@
 C:\APSIM.Soils\APSIM.Soils.Service\obj\Debug\APSIM.Soils.Service.csprojResolveAssemblyReference.cache
-C:\APSIM.Soils\APSIM.Soils.Service\bin\ApplicationInsights.config
 C:\APSIM.Soils\APSIM.Soils.Service\bin\APSIM.Soils.Service.dll.config
 C:\APSIM.Soils\APSIM.Soils.Service\bin\APSIM.Soils.Service.dll
 C:\APSIM.Soils\APSIM.Soils.Service\bin\APSIM.Soils.Service.pdb

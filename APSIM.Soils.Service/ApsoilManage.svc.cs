@@ -40,13 +40,54 @@ namespace APSIM.Soils.Service
 
 
 
+
+
+
+        /// <summary>
+        /// Empties all the data out of the SQLServer Soils Database.
+        /// VERY DANGEROUS!!!!  USE WITH CAUTION.
+        /// </summary>
+        public string CleanOutDBTables()
+        {
+            try
+            {
+                using (SqlConnection connection = Open())
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    //TODO:  Use "TRUNCATE TABLE APSoil.dbo.Apsoil;" instead. But throws an error for some reason.
+                    cmd.CommandText = @"BEGIN TRANSACTION 
+                                    DELETE FROM dbo.Apsoil;
+                                    DELETE FROM dbo.ApsoilChem;
+                                    DELETE FROM dbo.ApsoilCrops; 
+                                    DELETE FROM dbo.ApsoilWater; 
+                                COMMIT";
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = connection;
+
+                    cmd.ExecuteNonQuery();
+
+                    return "Success !!!";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to Clean out the Database Tables."
+                    + Environment.NewLine + ex.Message);
+            }
+        }
+
+
+
+
+
         public string RefreshDBTablesFromXML()
         {
             try
             {
                 List<Soil> soils = GetSoilsFromDB();
                 CleanOutDBTables();
-                DropSQLServerTableTypes();
+                //DropSQLServerTableTypes();
                 CreateSQLServerTableTypes();
                 InsertSoilsIntoDB(soils);
                 return "Success !!!!";
@@ -67,94 +108,47 @@ namespace APSIM.Soils.Service
         /// <returns>List of Soil Objects</returns>
         public List<Soil> GetSoilsFromDB()
         {
-            SqlDataReader soilXMLReader = GetXMLfromDB();
-            List<Soil> soilObjects = ConvertXMLtoSoilObjects(soilXMLReader);
-            return soilObjects;
-        }
 
-
-
-
-        private static SqlDataReader GetXMLfromDB()
-        {
-            SqlDataReader reader;
-            try
-            {
-                using (SqlConnection connection = Open())
-                {
-                    SqlCommand cmd = new SqlCommand();
-
-                    cmd.CommandText = "SELECT * FROM dbo.AllSoils WHERE IsApsoil = TRUE";
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = connection;
-
-                    reader = cmd.ExecuteReader();
-                    return reader;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to Get Soils XML from the Database."
-                    + Environment.NewLine + ex.Message);
-            }
-        }
-
-        private static List<Soil> ConvertXMLtoSoilObjects(SqlDataReader SoilXMLReader)
-        {
-            string xml;
-            Soil soil;
             List<Soil> soilObjects = new List<Soil>();
 
-            while(SoilXMLReader.Read())
-            {
-                xml = SoilXMLReader.GetString(2);
-                soil = SoilUtilities.FromXML(xml);
-                soilObjects.Add(soil);
-            }
-
-            SoilXMLReader.Close();
-
-            return soilObjects;
-        }
-
-
-
-
-
-
-
-        /// <summary>
-        /// Empties all the data out of the SQLServer Soils Database.
-        /// VERY DANGEROUS!!!!  USE WITH CAUTION.
-        /// </summary>
-        public string CleanOutDBTables()
-        {
             try
             {
                 using (SqlConnection connection = Open())
                 {
                     SqlCommand cmd = new SqlCommand();
 
-                    cmd.CommandText = @"BEGIN TRANSACTION 
-                                    TRUNCATE TABLE dbo.Apsoil; 
-                                    TRUNCATE TABLE dbo.ApsoilChem;
-                                    TRUNCATE TABLE dbo.ApsoilCrops; 
-                                    TRUNCATE TABLE dbo.ApsoilWater; 
-                                COMMIT";
+                    cmd.CommandText = "SELECT * FROM dbo.AllSoils WHERE IsApsoil = 1";
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = connection;
 
-                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                    return "Success !!!";
+                    string xml;
+                    Soil soil;
+                    while (reader.Read())
+                    {
+                        xml = reader.GetString(2);
+                        soil = SoilUtilities.FromXML(xml);
+                        soilObjects.Add(soil);
+                    }
+
+                    reader.Close();
+
+                    return soilObjects;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to Clean out the Database Tables." 
+                throw new Exception("Failed to Get Soils from the Database."
                     + Environment.NewLine + ex.Message);
             }
         }
+
+
+
+
+
+
 
 
 
@@ -339,6 +333,9 @@ COMMIT";
                 {
                     //See Table Value Parameters for explanation about this.
                     //https://msdn.microsoft.com/en-us/library/bb675163.aspx
+
+                    //DROP TYPE
+                    //https://msdn.microsoft.com/en-us/library/ms174407.aspx (if exists)
 
                     string sql = @"BEGIN TRANSACTION
 DROP TYPE dbo.ApsoilTableType;
@@ -784,7 +781,7 @@ COMMIT";
             }
             catch (Exception ex)
             {
-                throw new Exception("Failled to Insert Table-Value Parameter Datatables into the Database." 
+                throw new Exception("Failed to Insert Table-Value Parameter Datatables into the Database." 
                     + Environment.NewLine + ex.Message);
             }
 
@@ -800,16 +797,18 @@ COMMIT";
         /// <summary>Open the SoilsDB ready for use.</summary>
         private static SqlConnection Open()
         {
+            string connectionString = "";
             try
             {
-                string connectionString = File.ReadAllText(@"D:\Websites\dbConnect.txt") + ";Database=\"APSIM.ApSoil\""; ;
+                connectionString = File.ReadAllText(@"D:\Websites\dbConnect.txt") + ";Database=\"APSoil\""; ;
                 SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
                 return connection;
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to Open the connection to the Database"
+                throw new Exception("Failed to Open the connection to the Database."
+                    //+ Environment.NewLine + "ConnectionString= " + connectionString
                     + Environment.NewLine + ex.Message);
             }
         }
