@@ -28,7 +28,7 @@ namespace APSIM.Soils.Portal
         protected void BTNRefreshDBTables_Click(object sender, EventArgs e)
         {
             Label2.Text = "";
-            string url = "http://www.apsim.info/APSIM.Soils.Service/ApsoilManage.svc//RefreshDBTablesFromXML";
+            string url = "http://www.apsim.info/APSIM.Soils.Service/ApsoilManage.svc/RefreshDBTablesFromXML";
             Label2.Text = WebUtilities.CallRESTService<string>(url);
         }
     }

@@ -87,7 +87,7 @@ namespace APSIM.Soils.Service
             {
                 List<Soil> soils = GetSoilsFromDB();
                 CleanOutDBTables();
-                //DropSQLServerTableTypes();
+                DropSQLServerTableTypes();
                 CreateSQLServerTableTypes();
                 InsertSoilsIntoDB(soils);
                 return "Success !!!!";
@@ -337,11 +337,30 @@ COMMIT";
                     //DROP TYPE
                     //https://msdn.microsoft.com/en-us/library/ms174407.aspx (if exists)
 
-                    string sql = @"BEGIN TRANSACTION
-DROP TYPE dbo.ApsoilTableType;
-DROP TYPE dbo.ChemTableType;
-DROP TYPE dbo.CropsTableType;
-DROP TYPE dbo.WaterTableType;
+                    //Way I actually used below
+                    //http://stackoverflow.com/questions/2495119/how-to-check-existence-of-user-define-table-type-in-sql-server-2008
+                    //https://msdn.microsoft.com/en-us/library/ms181628.aspx  (TYPE_ID)
+
+                    string sql = @"
+BEGIN TRANSACTION
+
+IF TYPE_ID(N'dbo.ApsoilTableType') IS NOT NULL 
+BEGIN
+    DROP TYPE dbo.ApsoilTableType;
+END
+IF TYPE_ID(N'dbo.ChemTableType;') IS NOT NULL 
+BEGIN
+    DROP TYPE dbo.ChemTableType;
+END
+IF TYPE_ID(N'dbo.CropsTableType') IS NOT NULL 
+BEGIN
+    DROP TYPE dbo.CropsTableType;
+END
+IF TYPE_ID(N'dbo.WaterTableType') IS NOT NULL 
+BEGIN
+    DROP TYPE dbo.WaterTableType;
+END
+
 COMMIT";
 
                     SqlCommand cmd = new SqlCommand();
