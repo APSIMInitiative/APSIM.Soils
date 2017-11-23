@@ -19,6 +19,9 @@ namespace APSIM.Soils.Service.Controllers
 
 
         // GET: api/AllSoilsXMLForApsoil
+        //nb. Web API serialises the List of strings into JSON not xml by default.
+        //    It is ok though because the strings themselves are still xml 
+        //    it is only the list itself that is turned into JSON
         public List<string> Get()
         {
             return DatabaseManager.GetEachSoilsXMLfromDB();
