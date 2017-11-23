@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CSIRO")]
 [assembly: AssemblyProduct("APSIM.Soils.Service")]
-[assembly: AssemblyCopyright("Copyright © CSIRO 2016")]
+[assembly: AssemblyCopyright("Copyright © CSIRO 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("557d6f5e-dd95-46a2-b05b-3de392f8356e")]
+[assembly: Guid("83ea1385-944e-480d-9607-2a7da17e6b0f")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,6 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
