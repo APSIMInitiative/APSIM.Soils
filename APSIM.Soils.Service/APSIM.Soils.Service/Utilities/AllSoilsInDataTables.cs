@@ -54,7 +54,7 @@ namespace APSIM.Soils.Service.Utilities
             dt.Columns.Add("ASCSubOrder", typeof(string));
             dt.Columns.Add("Latitude", typeof(double));
             dt.Columns.Add("Longitude", typeof(double));
-            dt.Columns.Add("LocationAccuracy", typeof(double));
+            dt.Columns.Add("LocationAccuracy", typeof(string));
             dt.Columns.Add("YearOfSampling", typeof(int));
             dt.Columns.Add("DataSource", typeof(string)); //nvarchar(MAX)
             dt.Columns.Add("Comments", typeof(string)); //nvarchar(MAX)
@@ -131,7 +131,7 @@ namespace APSIM.Soils.Service.Utilities
             dt.Columns.Add("ParticleSizeClayCode", typeof(string));
             dt.Columns.Add("Rocks", typeof(double));
             dt.Columns.Add("RocksCode", typeof(string));
-            dt.Columns.Add("Texture", typeof(double));
+            dt.Columns.Add("Texture", typeof(string));
             dt.Columns.Add("TextureCode", typeof(string));
             dt.Columns.Add("MunsellColour", typeof(string));
             dt.Columns.Add("MunsellColourCode", typeof(string));
@@ -195,6 +195,10 @@ namespace APSIM.Soils.Service.Utilities
 
 
 
+
+
+
+
         /// <summary>
         /// Add just one soils data into all the Datatables.
         /// </summary>
@@ -205,92 +209,155 @@ namespace APSIM.Soils.Service.Utilities
             DataRow drApsoil = this.Apsoil.NewRow();
 
             drApsoil["RecordNo"] = Soil.RecordNumber;
-            drApsoil["ApsoilNumber"] = Soil.ApsoilNumber;
-            drApsoil["Name"] = Soil.Name;
-            drApsoil["LocalName"] = Soil.LocalName;
-            drApsoil["Country"] = Soil.Country;
-            drApsoil["State"] = Soil.State;
-            drApsoil["Region"] = Soil.Region;
-            drApsoil["NearestTown"] = Soil.NearestTown;
-            drApsoil["Site"] = Soil.Site;
-            drApsoil["SoilType"] = Soil.SoilType;
-            drApsoil["ASCOrder"] = Soil.ASCOrder;
-            drApsoil["ASCSubOrder"] = Soil.ASCSubOrder;
+            drApsoil["ApsoilNumber"] = CleanString(Soil.ApsoilNumber);
+            drApsoil["Name"] = CleanStringMax(Soil.Name);
+            drApsoil["LocalName"] = CleanStringMax(Soil.LocalName);
+            drApsoil["Country"] = CleanString(Soil.Country);
+            drApsoil["State"] = CleanString(Soil.State);
+            drApsoil["Region"] = CleanString(Soil.Region);
+            drApsoil["NearestTown"] = CleanString(Soil.NearestTown);
+            drApsoil["Site"] = CleanStringMax(Soil.Site);
+            drApsoil["SoilType"] = CleanStringMax(Soil.SoilType);
+            drApsoil["ASCOrder"] = CleanString(Soil.ASCOrder);
+            drApsoil["ASCSubOrder"] = CleanString(Soil.ASCSubOrder);
             drApsoil["Latitude"] = Soil.Latitude;
             drApsoil["Longitude"] = Soil.Longitude;
-            drApsoil["LocationAccuracy"] = Soil.LocationAccuracy;
+            drApsoil["LocationAccuracy"] = CleanString(Soil.LocationAccuracy);
             drApsoil["YearOfSampling"] = Soil.YearOfSampling;
-            drApsoil["DataSource"] = Soil.DataSource;
-            drApsoil["Comments"] = Soil.Comments;
-            drApsoil["NaturalVegetation"] = Soil.NaturalVegetation;
-            drApsoil["SummerDate"] = Soil.SoilWater.SummerDate;
-            drApsoil["SummerU"] = Soil.SoilWater.SummerU;
-            drApsoil["SummerCona"] = Soil.SoilWater.SummerCona;
-            drApsoil["WinterDate"] = Soil.SoilWater.WinterDate;
-            drApsoil["WinterU"] = Soil.SoilWater.WinterU;
-            drApsoil["WinterCona"] = Soil.SoilWater.SummerCona;
-            drApsoil["Salb"] = Soil.SoilWater.Salb;
-            drApsoil["DiffusConst"] = Soil.SoilWater.DiffusConst;
-            drApsoil["DiffusSlope"] = Soil.SoilWater.DiffusSlope;
-            drApsoil["CN2Bare"] = Soil.SoilWater.CN2Bare;
-            drApsoil["CNCov"] = Soil.SoilWater.CNCov;
-            drApsoil["CNRed"] = Soil.SoilWater.CNRed;
-            drApsoil["RootWt"] = Soil.SoilOrganicMatter.RootWt;
-            drApsoil["RootCN"] = Soil.SoilOrganicMatter.RootCN;
-            drApsoil["SoilCN"] = Soil.SoilOrganicMatter.SoilCN;
-            drApsoil["EnrACoeff"] = Soil.SoilOrganicMatter.EnrACoeff;
-            drApsoil["EnrBCoeff"] = Soil.SoilOrganicMatter.EnrBCoeff;
+            drApsoil["DataSource"] = CleanStringMax(Soil.DataSource);
+            drApsoil["Comments"] = CleanStringMax(Soil.Comments);
+            drApsoil["NaturalVegetation"] = CleanStringMax(Soil.NaturalVegetation);
+            drApsoil["SummerDate"] = CleanString(Soil.SoilWater.SummerDate);
+            drApsoil["SummerU"] = CleanDouble(Soil.SoilWater.SummerU);
+            drApsoil["SummerCona"] = CleanDouble(Soil.SoilWater.SummerCona);
+            drApsoil["WinterDate"] = CleanString(Soil.SoilWater.WinterDate);
+            drApsoil["WinterU"] = CleanDouble(Soil.SoilWater.WinterU);
+            drApsoil["WinterCona"] = CleanDouble(Soil.SoilWater.SummerCona);
+            drApsoil["Salb"] = CleanDouble(Soil.SoilWater.Salb);
+            drApsoil["DiffusConst"] = CleanDouble(Soil.SoilWater.DiffusConst);
+            drApsoil["DiffusSlope"] = CleanDouble(Soil.SoilWater.DiffusSlope);
+            drApsoil["CN2Bare"] = CleanDouble(Soil.SoilWater.CN2Bare);
+            drApsoil["CNCov"] = CleanDouble(Soil.SoilWater.CNCov);
+            drApsoil["CNRed"] = CleanDouble(Soil.SoilWater.CNRed);
+            drApsoil["RootWt"] = CleanDouble(Soil.SoilOrganicMatter.RootWt);
+            drApsoil["RootCN"] = CleanDouble(Soil.SoilOrganicMatter.RootCN);
+            drApsoil["SoilCN"] = CleanDouble(Soil.SoilOrganicMatter.SoilCN);
+            drApsoil["EnrACoeff"] = CleanDouble(Soil.SoilOrganicMatter.EnrACoeff);
+            drApsoil["EnrBCoeff"] = CleanDouble(Soil.SoilOrganicMatter.EnrBCoeff);
 
             this.Apsoil.Rows.Add(drApsoil);
 
 
-            for (int layer = 1; layer <= Soil.Analysis.Thickness.Count(); layer++)
+            for (int layer = 0; layer < Soil.Analysis.Thickness.Count(); layer++)
             {
                 DataRow drChem = this.Chem.NewRow();
 
                 drChem["RecordNo"] = Soil.RecordNumber;
-                drChem["LayerNo"] = layer;
+                drChem["LayerNo"] = layer+1;  //layer is 1 based not 0 based
                 drChem["Thickness"] = Soil.Analysis.Thickness[layer];
-                drChem["OC"] = Soil.SoilOrganicMatter.OC[layer];
-                drChem["OCCode"] = Soil.SoilOrganicMatter.OCMetadata[layer];
-                drChem["FBiom"] = Soil.SoilOrganicMatter.FBiom[layer];
-                drChem["FInert"] = Soil.SoilOrganicMatter.FInert[layer];
-                drChem["EC"] = Soil.Analysis.EC[layer];
-                drChem["ECCode"] = Soil.Analysis.ECMetadata[layer];
-                drChem["PH"] = Soil.Analysis.PH[layer];
-                drChem["PHCode"] = Soil.Analysis.PHMetadata[layer];
-                drChem["CL"] = Soil.Analysis.CL[layer];
-                drChem["CLCode"] = Soil.Analysis.CLMetadata[layer];
-                drChem["Boron"] = Soil.Analysis.Boron[layer];
-                drChem["BoronCode"] = Soil.Analysis.BoronMetadata[layer];
-                drChem["CEC"] = Soil.Analysis.CEC[layer];
-                drChem["CECCode"] = Soil.Analysis.CECMetadata[layer];
-                drChem["Ca"] = Soil.Analysis.Ca[layer];
-                drChem["CaCode"] = Soil.Analysis.CaMetadata[layer];
-                drChem["Mg"] = Soil.Analysis.Mg[layer];
-                drChem["MgCode"] = Soil.Analysis.MgMetadata[layer];
-                drChem["Na"] = Soil.Analysis.Na[layer];
-                drChem["NaCode"] = Soil.Analysis.NaMetadata[layer];
-                drChem["K"] = Soil.Analysis.K[layer];
-                drChem["KCode"] = Soil.Analysis.KMetadata[layer];
-                drChem["ESP"] = Soil.Analysis.ESP[layer];
-                drChem["ESPCode"] = Soil.Analysis.ESPMetadata[layer];
-                drChem["Mn"] = Soil.Analysis.Mn[layer];
-                drChem["MnCode"] = Soil.Analysis.MnMetadata[layer];
-                drChem["Al"] = Soil.Analysis.Al[layer];
-                drChem["AlCode"] = Soil.Analysis.AlMetadata[layer];
-                drChem["ParticleSizeSand"] = Soil.Analysis.ParticleSizeSand[layer];
-                drChem["ParticleSizeSandCode"] = Soil.Analysis.ParticleSizeSandMetadata[layer];
-                drChem["ParticleSizeSilt"] = Soil.Analysis.ParticleSizeSilt[layer];
-                drChem["ParticleSizeSiltCode"] = Soil.Analysis.ParticleSizeSiltMetadata[layer];
-                drChem["ParticleSizeClay"] = Soil.Analysis.ParticleSizeSand[layer];
-                drChem["ParticleSizeClayCode"] = Soil.Analysis.ParticleSizeClayMetadata[layer];
-                drChem["Rocks"] = Soil.Analysis.Rocks[layer];
-                drChem["RocksCode"] = Soil.Analysis.RocksMetadata[layer];
-                drChem["Texture"] = Soil.Analysis.Texture[layer];
-                drChem["TextureCode"] = Soil.Analysis.TextureMetadata[layer];
-                drChem["MunsellColour"] = Soil.Analysis.MunsellColour[layer];
-                drChem["MunsellColourCode"] = Soil.Analysis.MunsellMetadata[layer];
+
+                //I had to turn OC into an OptDouble() from CleanDouble() even though it is not optional because at least one soil,
+                //"gravel (Kojonup C1a No1145)" has NaN values in the OC column
+                // for its bottom layers of the the Chem table. 
+                //I don't know why they did this but they did.
+                //So turn the NaN into a Null for the database.
+                drChem["OC"] = OptDouble(Soil.SoilOrganicMatter.OC,layer);
+                drChem["OCCode"] = OptString(Soil.SoilOrganicMatter.OCMetadata, layer);
+                drChem["FBiom"] = OptDouble(Soil.SoilOrganicMatter.FBiom, layer);
+                drChem["FInert"] = OptDouble(Soil.SoilOrganicMatter.FInert, layer);
+
+
+
+                drChem["EC"] = OptDouble(Soil.Analysis.EC, layer);
+                drChem["ECCode"] = OptString(Soil.Analysis.ECMetadata, layer);
+                //I had to turn PH into an OptDouble() from CleanDouble() even though it is not optional because at least one soil,
+                //Apsoil No = 1093 Clay Dingwall has NaN values in the PH column
+                // for its bottom layers of the the Chem table. 
+                //I don't know why they did this but they did.
+                //So turn the NaN into a Null for the database.
+                drChem["PH"] = OptDouble(Soil.Analysis.PH, layer);  //PH is not optional
+                drChem["PHCode"] = OptString(Soil.Analysis.PHMetadata, layer);
+                drChem["CL"] = OptDouble(Soil.Analysis.CL, layer);
+                drChem["CLCode"] = OptString(Soil.Analysis.CLMetadata, layer);
+                drChem["Boron"] = OptDouble(Soil.Analysis.Boron, layer);
+                drChem["BoronCode"] = OptString(Soil.Analysis.BoronMetadata, layer);
+                drChem["CEC"] = OptDouble(Soil.Analysis.CEC, layer);
+                drChem["CECCode"] = OptString(Soil.Analysis.CECMetadata, layer);
+                drChem["Ca"] = OptDouble(Soil.Analysis.Ca, layer);
+                drChem["CaCode"] = OptString(Soil.Analysis.CaMetadata, layer);
+                drChem["Mg"] = OptDouble(Soil.Analysis.Mg, layer);
+                drChem["MgCode"] = OptString(Soil.Analysis.MgMetadata, layer);
+                drChem["Na"] = OptDouble(Soil.Analysis.Na, layer);
+                drChem["NaCode"] = OptString(Soil.Analysis.NaMetadata, layer);
+                drChem["K"] = OptDouble(Soil.Analysis.K, layer);
+                drChem["KCode"] = OptString(Soil.Analysis.KMetadata, layer);
+                drChem["ESP"] = OptDouble(Soil.Analysis.ESP, layer);
+                drChem["ESPCode"] = OptString(Soil.Analysis.ESPMetadata, layer);
+                drChem["Mn"] = OptDouble(Soil.Analysis.Mn, layer);
+                drChem["MnCode"] = OptString(Soil.Analysis.MnMetadata, layer);
+                drChem["Al"] = OptDouble(Soil.Analysis.Al, layer);
+                drChem["AlCode"] = OptString(Soil.Analysis.AlMetadata, layer);
+                drChem["ParticleSizeSand"] = OptDouble(Soil.Analysis.ParticleSizeSand, layer);
+                drChem["ParticleSizeSandCode"] = OptString(Soil.Analysis.ParticleSizeSandMetadata, layer);
+                drChem["ParticleSizeSilt"] = OptDouble(Soil.Analysis.ParticleSizeSilt, layer);
+                drChem["ParticleSizeSiltCode"] = OptString(Soil.Analysis.ParticleSizeSiltMetadata, layer);
+                drChem["ParticleSizeClay"] = OptDouble(Soil.Analysis.ParticleSizeSand, layer);
+                drChem["ParticleSizeClayCode"] = OptString(Soil.Analysis.ParticleSizeClayMetadata, layer);
+                drChem["Rocks"] = OptDouble(Soil.Analysis.Rocks, layer);
+                drChem["RocksCode"] = OptString(Soil.Analysis.RocksMetadata, layer);
+                drChem["Texture"] = OptString(Soil.Analysis.Texture, layer);
+                drChem["TextureCode"] = OptString(Soil.Analysis.TextureMetadata, layer);
+                drChem["MunsellColour"] = OptString(Soil.Analysis.MunsellColour, layer);
+                drChem["MunsellColourCode"] = OptString(Soil.Analysis.MunsellMetadata, layer);
+
+
+                ////The way a soil gets deserialised from the xml is that it creates null references to
+                ////optional Analysis arrays if they don't exist eg. EC, CL, Boron etc = null. 
+                ////This causes a problem when you try to access their elements eg. EC[layer]
+                ////So we need to test to see if these arrays are null before trying to accessing their elements.
+                ////See the C# 6 Second null-conditional operator for a shorthand way of doing this eg. the EC?[layer]
+                ////https://csharp.today/c-6-features-null-conditional-and-and-null-coalescing-operators/
+
+                ////The drChem has its column property of AllowDBNull = true. 
+                ////So we should be able to assign the datarow a null value, 
+                ////and the SQL Server database has its columns set to allow nulls. 
+                ////https://stackoverflow.com/questions/5120914/setting-a-datarow-item-to-null
+                //drChem["EC"] = Soil.Analysis.EC?[layer] ?? (object)DBNull.Value;
+                //drChem["ECCode"] = Soil.Analysis.ECMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["PH"] = Soil.Analysis.PH[layer];  //PH is not optional
+                //drChem["PHCode"] = Soil.Analysis.PHMetadata?[layer] ?? (object)DBNull.Value; 
+                //drChem["CL"] = Soil.Analysis.CL?[layer] ??  (object)DBNull.Value;
+                //drChem["CLCode"] = Soil.Analysis.CLMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Boron"] = Soil.Analysis.Boron?[layer] ??  (object)DBNull.Value;
+                //drChem["BoronCode"] = Soil.Analysis.BoronMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["CEC"] = Soil.Analysis.CEC?[layer] ??  (object)DBNull.Value;
+                //drChem["CECCode"] = Soil.Analysis.CECMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Ca"] = Soil.Analysis.Ca?[layer] ??  (object)DBNull.Value;
+                //drChem["CaCode"] = Soil.Analysis.CaMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Mg"] = Soil.Analysis.Mg?[layer] ??  (object)DBNull.Value;
+                //drChem["MgCode"] = Soil.Analysis.MgMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Na"] = Soil.Analysis.Na?[layer] ??  (object)DBNull.Value;
+                //drChem["NaCode"] = Soil.Analysis.NaMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["K"] = Soil.Analysis.K?[layer] ??  (object)DBNull.Value;
+                //drChem["KCode"] = Soil.Analysis.KMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["ESP"] = Soil.Analysis.ESP?[layer] ??  (object)DBNull.Value;
+                //drChem["ESPCode"] = Soil.Analysis.ESPMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Mn"] = Soil.Analysis.Mn?[layer] ??  (object)DBNull.Value;
+                //drChem["MnCode"] = Soil.Analysis.MnMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Al"] = Soil.Analysis.Al?[layer] ??  (object)DBNull.Value;
+                //drChem["AlCode"] = Soil.Analysis.AlMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["ParticleSizeSand"] = Soil.Analysis.ParticleSizeSand?[layer] ??  (object)DBNull.Value;
+                //drChem["ParticleSizeSandCode"] = Soil.Analysis.ParticleSizeSandMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["ParticleSizeSilt"] = Soil.Analysis.ParticleSizeSilt?[layer] ??  (object)DBNull.Value;
+                //drChem["ParticleSizeSiltCode"] = Soil.Analysis.ParticleSizeSiltMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["ParticleSizeClay"] = Soil.Analysis.ParticleSizeSand?[layer] ??  (object)DBNull.Value;
+                //drChem["ParticleSizeClayCode"] = Soil.Analysis.ParticleSizeClayMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Rocks"] = Soil.Analysis.Rocks?[layer] ??  (object)DBNull.Value;
+                //drChem["RocksCode"] = Soil.Analysis.RocksMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["Texture"] = Soil.Analysis.Texture?[layer] ??  (object)DBNull.Value;
+                //drChem["TextureCode"] = Soil.Analysis.TextureMetadata?[layer] ??  (object)DBNull.Value;
+                //drChem["MunsellColour"] = Soil.Analysis.MunsellColour?[layer] ??  (object)DBNull.Value;
+                //drChem["MunsellColourCode"] = Soil.Analysis.MunsellMetadata?[layer] ??  (object)DBNull.Value;
 
                 this.Chem.Rows.Add(drChem);
             }
@@ -299,17 +366,19 @@ namespace APSIM.Soils.Service.Utilities
 
             foreach (SoilCrop crop in Soil.Water.Crops)
             {
-                for (int layer = 1; layer <= crop.Thickness.Count(); layer++)
+                for (int layer = 0; layer < crop.Thickness.Count(); layer++)
                 {
                     DataRow drCrops = this.Crops.NewRow();
 
                     drCrops["RecordNo"] = Soil.RecordNumber;
-                    drCrops["LayerNo"] = layer;
+                    drCrops["LayerNo"] = layer + 1;  //layer is 1 based not 0 based
                     drCrops["CropName"] = crop.Name.ToLower();
-                    drCrops["LL"] = crop.LL[layer];
-                    drCrops["LLCode"] = crop.LLMetadata[layer];
-                    drCrops["KL"] = crop.KL[layer];
-                    drCrops["XF"] = crop.XF[layer];
+
+
+                    drCrops["LL"] = OptDouble(crop.LL,layer);
+                    drCrops["LLCode"] = OptString(crop.LLMetadata, layer);
+                    drCrops["KL"] = OptDouble(crop.KL, layer);
+                    drCrops["XF"] = OptDouble(crop.XF,layer);
 
                     this.Crops.Rows.Add(drCrops);
                 }
@@ -318,32 +387,113 @@ namespace APSIM.Soils.Service.Utilities
 
 
 
-            for (int layer = 1; layer <= Soil.Water.Thickness.Count(); layer++)
+            for (int layer = 0; layer < Soil.Water.Thickness.Count(); layer++)
             {
                 DataRow drWater = this.Water.NewRow();
 
+
                 drWater["RecordNo"] = Soil.RecordNumber;
-                drWater["LayerNo"] = layer;
+                drWater["LayerNo"] = layer + 1;  //layer is 1 based not 0 based
                 drWater["Thickness"] = Soil.Water.Thickness[layer];
-                drWater["BD"] = Soil.Water.BD[layer];
-                drWater["BDCode"] = Soil.Water.BDMetadata[layer];
-                drWater["SAT"] = Soil.Water.SAT[layer];
-                drWater["SATCode"] = Soil.Water.SATMetadata[layer];
-                drWater["DUL"] = Soil.Water.DUL[layer];
-                drWater["DULCode"] = Soil.Water.DULMetadata[layer];
-                drWater["LL15"] = Soil.Water.LL15[layer];
-                drWater["LL15Code"] = Soil.Water.LL15Metadata[layer];
-                drWater["Airdry"] = Soil.Water.AirDry[layer];
-                drWater["AirdryCode"] = Soil.Water.AirDryMetadata[layer];
-                drWater["SWCON"] = Soil.SoilWater.SWCON[layer];
-                drWater["MWCON"] = Soil.SoilWater.MWCON[layer];
-                drWater["KS"] = Soil.Water.KS[layer];
+                drWater["BD"] = CleanDouble(Soil.Water.BD[layer]);
+                drWater["BDCode"] = OptString(Soil.Water.BDMetadata, layer);
+                //I had to turn SAT,DUL,LL15,Airdry, SWCON all into an OptDouble() from CleanDouble() even they are not optional because at least one soil,
+                //"Brown Vertosol (MtMcLaren No 1276)" has NaN values in the these column
+                // for its bottom layers of the the Crops table. 
+                //I don't know why they did this but they did.
+                //So turn the NaN into a Null for the database.
+                drWater["SAT"] = OptDouble(Soil.Water.SAT,layer);
+                drWater["SATCode"] = OptString(Soil.Water.SATMetadata, layer);
+                drWater["DUL"] = OptDouble(Soil.Water.DUL,layer);
+                drWater["DULCode"] = OptString(Soil.Water.DULMetadata, layer);
+                drWater["LL15"] = OptDouble(Soil.Water.LL15,layer);
+                drWater["LL15Code"] = OptString(Soil.Water.LL15Metadata, layer);
+                drWater["Airdry"] = OptDouble(Soil.Water.AirDry,layer);
+                drWater["AirdryCode"] = OptString(Soil.Water.AirDryMetadata, layer);
+                drWater["SWCON"] = OptDouble(Soil.SoilWater.SWCON,layer);
+                //MWCON and KS are optional parameters. Solve this problem the same as I did for optional Analysis parameters.
+                drWater["MWCON"] = OptDouble(Soil.SoilWater.MWCON, layer);
+                drWater["KS"] = OptDouble(Soil.Water.KS, layer);
+
+                //drWater["RecordNo"] = Soil.RecordNumber;
+                //drWater["LayerNo"] = layer + 1;  //layer is 1 based not 0 based
+                //drWater["Thickness"] = Soil.Water.Thickness[layer];
+                //drWater["BD"] = Math.Round(Soil.Water.BD[layer], 3);
+                //drWater["BDCode"] = Soil.Water.BDMetadata?[layer] ?? Convert.DBNull;
+                //drWater["SAT"] = Math.Round(Soil.Water.SAT[layer], 3);
+                //drWater["SATCode"] = Soil.Water.SATMetadata?[layer] ?? Convert.DBNull;
+                //drWater["DUL"] = Math.Round(Soil.Water.DUL[layer], 3);
+                //drWater["DULCode"] = Soil.Water.DULMetadata?[layer] ?? Convert.DBNull;
+                //drWater["LL15"] = Math.Round(Soil.Water.LL15[layer], 3);
+                //drWater["LL15Code"] = Soil.Water.LL15Metadata?[layer] ?? (object)DBNull.Value;
+                //drWater["Airdry"] = Math.Round(Soil.Water.AirDry[layer], 3);
+                //drWater["AirdryCode"] = Soil.Water.AirDryMetadata?[layer] ?? (object)DBNull.Value;
+                //drWater["SWCON"] = Math.Round(Soil.SoilWater.SWCON[layer], 3);
+                ////MWCON and KS are optional parameters. Solve this problem the same as I did for optional Analysis parameters.
+                //drWater["MWCON"] = Optional(Soil.SoilWater.MWCON, layer) ?? (object)DBNull.Value;
+                //drWater["KS"] = Optional(Soil.Water.KS, layer) ?? (object)DBNull.Value;
 
                 this.Water.Rows.Add(drWater);
             }
 
         }
 
+
+        private double CleanDouble(double value)
+        {
+                return Math.Round(value, 3);
+        }
+
+        private string CleanString(string text)
+        {
+            if (text.Length > 50)
+                return text.Substring(0, 49);
+            //throw new Exception("string is too long for database");
+            else
+                return text;
+
+        }
+
+        private string CleanStringMax(string text)
+        {
+            if (text.Length > 2000)
+                return text.Substring(0, 1999);
+            //throw new Exception("string is too long for database");
+            else
+                return text;
+
+        }
+
+
+        private Object OptString(string[] array, int layer)
+        {
+            if (array?[layer] == null)
+                return (Object)DBNull.Value;
+            else
+                return CleanString(array[layer]);
+
+
+        }
+
+
+        private Object OptDouble(double[] array, int layer)
+        {
+            if ((array?[layer] == null))
+            {
+                return (Object)DBNull.Value;
+            }
+            else
+            {
+                if (double.IsNaN(array[layer]))
+                {
+                    return (Object)DBNull.Value;
+                }
+                else
+                {
+                    return CleanDouble(array[layer]);
+                }
+            }
+        }
 
 
 

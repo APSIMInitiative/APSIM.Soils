@@ -162,32 +162,37 @@ namespace APSIM.Soils.Service.Utilities
                     //See Table Value Parameters for explanation about this.
                     //https://msdn.microsoft.com/en-us/library/bb675163.aspx
 
-                    string sql = @"BEGIN TRANSACTION
+                                        string sql = @"BEGIN TRANSACTION
 
-INSERT INTO dob.Apsoil
-SELECT * FROM @tvpApsoil;
+                    INSERT INTO dbo.Apsoil
+                    SELECT* FROM @tvpApsoil;
 
-INSERT INTO dob.ApsoilChem
-SELECT * FROM @tvpChem;
+                    INSERT INTO dbo.ApsoilChem
+                    SELECT* FROM @tvpChem;
 
-INSERT INTO dob.ApsoilCrops
-SELECT * FROM @tvpCrops;
+                    INSERT INTO dbo.ApsoilCrops
+                    SELECT* FROM @tvpCrops;
 
-INSERT INTO dob.ApsoilWater
-SELECT * FROM @tvpWater;
+                    INSERT INTO dbo.ApsoilWater
+                    SELECT* FROM @tvpWater;
 
-COMMIT";
+                    COMMIT";
+
 
                     SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = connection;
                     cmd.CommandText = sql;
                     cmd.CommandType = CommandType.Text;
-                    cmd.Connection = connection;
+                    //cmd.CommandText = "dbo.usp_insert_apsoil_soils";
+                    //cmd.CommandType = CommandType.StoredProcedure;
+
 
                     //Create the Table-Value Parameters and fill them using the Datatables.
                     SqlParameter tvpApsoil = cmd.Parameters.AddWithValue("@tvpApsoil", AllSoilsInDataTables.Apsoil);
                     SqlParameter tvpChem = cmd.Parameters.AddWithValue("@tvpChem", AllSoilsInDataTables.Chem);
                     SqlParameter tvpCrops = cmd.Parameters.AddWithValue("@tvpCrops", AllSoilsInDataTables.Crops);
                     SqlParameter tvpWater = cmd.Parameters.AddWithValue("@tvpWater", AllSoilsInDataTables.Water);
+         
 
                     tvpApsoil.SqlDbType = SqlDbType.Structured;
                     tvpChem.SqlDbType = SqlDbType.Structured;
@@ -195,7 +200,6 @@ COMMIT";
                     tvpWater.SqlDbType = SqlDbType.Structured;
 
                     //Declare the Table-Value Parameters of the TableTypes that we created
-                    //
                     tvpApsoil.TypeName = "dbo.ApsoilTableType";
                     tvpChem.TypeName = "dbo.ChemTableType";
                     tvpCrops.TypeName = "dbo.CropsTableType";
