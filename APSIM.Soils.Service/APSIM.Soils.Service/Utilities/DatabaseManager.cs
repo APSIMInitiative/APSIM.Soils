@@ -70,11 +70,13 @@ namespace APSIM.Soils.Service.Utilities
                     SqlCommand cmd = new SqlCommand();
 
                     //TODO:  Use "TRUNCATE TABLE APSoil.dbo.Apsoil;" instead. But throws an error for some reason.
+                    //Must delete in the reverse order so that the primary key is not deleted before the foreign keys
+                    //in other tables.
                     cmd.CommandText = @"BEGIN TRANSACTION 
-                                    DELETE FROM dbo.Apsoil;
-                                    DELETE FROM dbo.ApsoilChem;
-                                    DELETE FROM dbo.ApsoilCrops; 
                                     DELETE FROM dbo.ApsoilWater; 
+                                    DELETE FROM dbo.ApsoilCrops; 
+                                    DELETE FROM dbo.ApsoilChem;
+                                    DELETE FROM dbo.Apsoil;
                                 COMMIT";
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = connection;

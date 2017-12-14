@@ -35,12 +35,45 @@ namespace APSIM.Soils.Service.Controllers
             foreach (string xml in eachSoilsXML)
             {
                 soil = SoilUtilities.FromXML(xml);
-                soilObjects.Add(soil);
+                if (SoilInAustralia(soil))
+                {
+                    soilObjects.Add(soil);
+                }
             }
             AllSoilsInDataTables soilsInDataTables = new AllSoilsInDataTables();
             soilsInDataTables.AddAllSoilsIntoDataTables(soilObjects);
             DatabaseManager.CleanOutDBTables();
             DatabaseManager.InsertDataTablesIntoDB(soilsInDataTables);
+        }
+
+        private bool SoilInAustralia(Soil soil)
+        {
+            if (soil.Country == "Australia")
+            {
+                switch (soil.State)
+                {
+                    case "Queensland":
+                        return true;
+                    case "New South Wales":
+                        return true;
+                    case "Australian Capital Territory":
+                        return true;
+                    case "Victoria":
+                        return true;
+                    case "Tasmania":
+                        return true;
+                    case "South Australia":
+                        return true;
+                    case "Western Australia":
+                        return true;
+                    default:
+                        return false;  //Don't want Generic Australian soils or Northern Territory soils
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // PUT: api/ApsoilDB/5
