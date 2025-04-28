@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APSIM.Soils", "src\APSIM.So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APSIM.Soils.Tests", "tests\APSIM.Soils.Tests.csproj", "{C2D0F339-0EFD-429D-A19A-5D0256D10E80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APSIM.Numerics", "..\APSIM.Numerics\src\APSIM.Numerics.csproj", "{56CBD12B-FA88-422C-981F-5DD36B9E38B6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
