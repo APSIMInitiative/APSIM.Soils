@@ -1,13 +1,32 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+
+    <PackageId>APSIM.Soils</PackageId>
+    <Version>8.0.0</Version>
+    <Authors>APSIM Initiative</Authors>
+    <Company>APSIM Initiative</Company>
+    <PackageTags>APSIM,Soils</PackageTags>
+    <Description>This package contains APSIM soil functions.</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\APSIM.Numerics\src\APSIM.Numerics.csproj" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="APSIM.Numerics" Version="8.1.0" />
   </ItemGroup>
 
 </Project>
