@@ -636,7 +636,7 @@ public class SoilUtilities
     /// <param name="sat">SATmm figures from Physical model.</param>
     /// <param name="sw">Pass in an optional sw table</param>
     /// <returns>A double array of volumetric soil water values (mm/mm)</returns>
-    private static double[] DistributeAmountWaterFromTop(double amountWater, double[] thickness, double[] airdry, double[] ll, double[] dul, double[] sat, double[] xf, double[] sw = null)
+    public static double[] DistributeAmountWaterFromTop(double amountWater, double[] thickness, double[] airdry, double[] ll, double[] dul, double[] sat, double[] xf, double[] sw = null)
     {
         double waterAmount = amountWater;
         double[] soilWater = new double[thickness.Length];
